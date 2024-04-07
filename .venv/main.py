@@ -87,7 +87,7 @@ while True:
                 date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
                 dato = f"{data[0:2]}/{data[3:4]}/{data[4:]}"
                 name = f"{nome} - {dato} - 0/{maximo}"
-                nume = str(f"{nome}").replace(" ", "_")
+                nume = str(f"{nome}").replace(" ", "")
 
                 query(comando=f"insert into testeDB.eventos values (default, '{name}', '{date}', '{maximo}', '{nume}')")
 
@@ -105,7 +105,7 @@ while True:
                 cursor.execute(query)
                 result = cursor.fetchall()
                 for i, coluna in enumerate(result):
-                    print(f"[{i + 1}] {coluna[1]}\n")
+                    print(f"[{coluna[0]}] {coluna[1]}\n")
                 connection.close()
                 inspecionar = int(input("Deseja inspecionar qual evento: "))
 
@@ -117,14 +117,33 @@ while True:
                 cursor.execute(query)
                 result = cursor.fetchall()
                 instabela = ""
+                dataevento = ""
+                maximoevento = 0
                 numero = 0
                 for i, v in enumerate(result):
                     numero = v[0]
                     if numero == inspecionar:
                         instabela = v[4]
+                        dataevento = v[2]
+                        maximoevento = v[3]
+                print(f'''
+Nome: {instabela}
+Data: {dataevento}
+Capacidade Máxima: {maximoevento} 
+                
+Participantes:''')
                 connection.close()
 
-
+                connection = mysql_connection('localhost', 'root', '', database='testeDB')
+                query = f'''
+                            SELECT * FROM {instabela};
+                                                '''
+                cursor = connection.cursor()
+                cursor.execute(query)
+                result = cursor.fetchall()
+                for i in result:
+                    print(f"-{i[1]}")
+                time.sleep(2)
 
             if escolhaaction == 2:
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
@@ -135,7 +154,7 @@ while True:
                 cursor.execute(query)
                 result = cursor.fetchall()
                 for i, coluna in enumerate(result):
-                    print(f"[{i + 1}] {coluna[1]}\n")
+                    print(f"[{coluna[0]}] {coluna[1]}\n")
                 connection.close()
                 inspecionar = int(input("Deseja Apagar qual evento: "))
 
