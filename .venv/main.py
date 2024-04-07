@@ -75,6 +75,14 @@ while True:
 
     #-----------------------------------------------------------------------------------------
 
+    if escolha == 0:
+        linha2(31)
+        cabeçalho("ENCERRANDO PROGRAMA")
+        cabeçalho("ATÉ A PRÓXIMA")
+        linha2(31)
+        time.sleep(1)
+        break
+
     if escolha == 1:
         while True:
             linha2(32)
@@ -218,5 +226,68 @@ Participantes:''')
         arquivooo.write(f"\n{nome.title()}")
         arquivooo.close()
     #---------------------------------------------------------------------------------------------------------------------------
+
+    if escolha != 0 and escolha != 1 and escolha != 2:
+        connection = mysql_connection('localhost', 'root', '', database='testeDB')
+        query = '''
+                                            SELECT * FROM users;
+                                                        '''
+        cursor = connection.cursor()
+        cursor.execute(query)
+        result = cursor.fetchall()
+        dadosuser = []
+        nome = ""
+        for i, v in enumerate(result):
+            if v[0] == escolha:
+                nome = v[1]
+                dadosuser = v
+        connection.close()
+        linha2(34)
+        cabeçalho(f"USUÁRIO: {nome}")
+        cabeçalho("OPÇÕES:")
+        print(f'''[0] SAIR
+[1] REGISTRAR EM UM EVENTO
+[2] REALIZAR CHECK IN
+[3] VISUALIZAR FICHA DE INSCRIÇÃO''')
+        escolhaaction = int(input("\nDigite o Número da Ação: "))
+        if escolha == 0:
+            linha2(31)
+            cabeçalho("SAINDO DO USUÁRIO...")
+            linha2(31)
+            time.sleep(2)
+            break
+
+        if escolhaaction == 1:
+            connection = mysql_connection('localhost', 'root', '', database='testeDB')
+            query = '''
+                                                SELECT * FROM eventos;
+                                            '''
+            cursor = connection.cursor()
+            cursor.execute(query)
+            result = cursor.fetchall()
+            for i, coluna in enumerate(result):
+                print(f"[{coluna[0]}] {coluna[1]}\n")
+            connection.close()
+            registrar = int(input("Deseja se registrar em qual evento: "))
+
+            #===========================================================================================================
+
+            connection = mysql_connection('localhost', 'root', '', database='testeDB')
+            query = '''
+                                                        SELECT * FROM eventos;
+                                                                    '''
+            cursor = connection.cursor()
+            cursor.execute(query)
+            result = cursor.fetchall()
+            eventoreg = str("").lower()
+            for i, v in enumerate(result):
+                if v[0] == registrar:
+                    eventoreg = v[4]
+            connection.close()
+            print(eventoreg)
+            neme = dadosuser[1]
+            query(f"insert into {eventoreg} (id, nome, datacompra, datacheckin) values (default, '{neme}','','')")
+
+
 
 
