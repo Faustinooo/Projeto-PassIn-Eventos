@@ -1,5 +1,8 @@
 from mysql.connector import connect
 import time
+from datetime import datetime
+
+data_atual = datetime.now()
 
 # FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES
 
@@ -27,17 +30,17 @@ def linha2(a=0):
 
 def query(comando=""):
     connection = mysql_connection('localhost', 'root', '', database='testeDB')
-    query = f'''
+    query_string = f'''
                 {comando}
                 '''
     cursor = connection.cursor()
-    cursor.execute(query)
+    cursor.execute(query_string)
     connection.close()
 
 
 def tabela(a=""):
     connection = mysql_connection('localhost', 'root', '', database='testeDB')
-    query = f'''
+    query_string = f'''
                 create table {a.strip()}(
                 `id` varchar(10) primary key not null,
                 `nome` varchar(100) not null,
@@ -46,7 +49,7 @@ def tabela(a=""):
                  );
                 '''
     cursor = connection.cursor()
-    cursor.execute(query)
+    cursor.execute(query_string)
     connection.close()
 
 
@@ -61,11 +64,11 @@ while True:
 [2] REGISTRAR USUÁRIO''')
 
     connection = mysql_connection('localhost', 'root', '', database='testeDB')
-    query = '''
+    query_string = '''
                 SELECT * FROM users;
                                                     '''
     cursor = connection.cursor()
-    cursor.execute(query)
+    cursor.execute(query_string)
     result = cursor.fetchall()
     for dados in result:
         print(f"[{dados[0]}] {dados[1]}")
@@ -101,8 +104,8 @@ while True:
                 maximo = input("Digite a Capacidade Máxima: ")
                 date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
                 dato = f"{data[0:2]}/{data[3:4]}/{data[4:]}"
-                name = f"{nome} - {dato} - 0/{maximo}"
                 nume = str(f"{nome}").replace(" ", "")
+                name = f"{nume} - {dato} - 0/{maximo}"
 
                 query(comando=f"insert into testeDB.eventos values (default, '{name}', '{date}', '{maximo}', '{nume}')")
 
@@ -113,11 +116,11 @@ while True:
                 time.sleep(2)
             if escolhaaction == 1:
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query = '''
+                query_string = '''
                     SELECT * FROM eventos;
                 '''
                 cursor = connection.cursor()
-                cursor.execute(query)
+                cursor.execute(query_string)
                 result = cursor.fetchall()
                 for i, coluna in enumerate(result):
                     print(f"[{coluna[0]}] {coluna[1]}\n")
@@ -125,11 +128,11 @@ while True:
                 inspecionar = int(input("Deseja inspecionar qual evento: "))
 
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query = '''
+                query_string = '''
                                     SELECT * FROM eventos;
                                 '''
                 cursor = connection.cursor()
-                cursor.execute(query)
+                cursor.execute(query_string)
                 result = cursor.fetchall()
                 instabela = ""
                 dataevento = ""
@@ -150,11 +153,11 @@ Participantes:''')
                 connection.close()
 
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query = f'''
+                query_string = f'''
                             SELECT * FROM {instabela};
                                                 '''
                 cursor = connection.cursor()
-                cursor.execute(query)
+                cursor.execute(query_string)
                 result = cursor.fetchall()
                 for i in result:
                     print(f"-{i[1]}")
@@ -162,11 +165,11 @@ Participantes:''')
 
             if escolhaaction == 2:
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query = '''
+                query_string = '''
                                     SELECT * FROM eventos;
                                 '''
                 cursor = connection.cursor()
-                cursor.execute(query)
+                cursor.execute(query_string)
                 result = cursor.fetchall()
                 for i, coluna in enumerate(result):
                     print(f"[{coluna[0]}] {coluna[1]}\n")
@@ -174,11 +177,11 @@ Participantes:''')
                 inspecionar = int(input("Deseja Apagar qual evento: "))
 
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query = '''
+                query_string = '''
                                     SELECT * FROM eventos;
                                                 '''
                 cursor = connection.cursor()
-                cursor.execute(query)
+                cursor.execute(query_string)
                 result = cursor.fetchall()
                 aptabela = ""
                 numero = 0
@@ -191,21 +194,21 @@ Participantes:''')
                 #--------------------------------------------------------------------------------------------------
 
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query = f'''
+                query_string = f'''
                         delete from eventos where (nome = '{aptabela}');
                                 '''
                 cursor = connection.cursor()
-                cursor.execute(query)
+                cursor.execute(query_string)
                 connection.close()
 
                 #---------------------------------------------------------------------------------------------------
 
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query = f'''
+                query_string = f'''
                         drop table {aptabela};
                                                 '''
                 cursor = connection.cursor()
-                cursor.execute(query)
+                cursor.execute(query_string)
                 connection.close()
 
             if escolhaaction == 3:
@@ -221,7 +224,8 @@ Participantes:''')
         nome = input("Digite Seu Nome: ").upper()
         data = input("Digite Sua Data de Nascimento: ")
         date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
-        query(f"insert into users (id, nome, nascimento, idade, evento) values (default, '{nome}','{date}','','')")
+        ident = f"`{nome[:2]}{data[4:]}"
+        query(f"insert into users (id, nome, nascimento, idade, evento) values ('{ident}', '{nome}','{date}','','')")
         arquivooo = open('user.txt', 'a', encoding='utf8')
         arquivooo.write(f"\n{nome.title()}")
         arquivooo.close()
@@ -229,11 +233,11 @@ Participantes:''')
 
     if escolha != 0 and escolha != 1 and escolha != 2:
         connection = mysql_connection('localhost', 'root', '', database='testeDB')
-        query = '''
+        query_string = '''
                                             SELECT * FROM users;
                                                         '''
         cursor = connection.cursor()
-        cursor.execute(query)
+        cursor.execute(query_string)
         result = cursor.fetchall()
         dadosuser = []
         nome = ""
@@ -259,11 +263,11 @@ Participantes:''')
 
         if escolhaaction == 1:
             connection = mysql_connection('localhost', 'root', '', database='testeDB')
-            query = '''
+            query_string = '''
                                                 SELECT * FROM eventos;
                                             '''
             cursor = connection.cursor()
-            cursor.execute(query)
+            cursor.execute(query_string)
             result = cursor.fetchall()
             for i, coluna in enumerate(result):
                 print(f"[{coluna[0]}] {coluna[1]}\n")
@@ -273,20 +277,23 @@ Participantes:''')
             #===========================================================================================================
 
             connection = mysql_connection('localhost', 'root', '', database='testeDB')
-            query = '''
+            query_string = '''
                                                         SELECT * FROM eventos;
                                                                     '''
             cursor = connection.cursor()
-            cursor.execute(query)
+            cursor.execute(query_string)
             result = cursor.fetchall()
             eventoreg = str("").lower()
             for i, v in enumerate(result):
                 if v[0] == registrar:
                     eventoreg = v[4]
             connection.close()
-            print(eventoreg)
             neme = dadosuser[1]
-            query(f"insert into {eventoreg} (id, nome, datacompra, datacheckin) values (default, '{neme}','','')")
+            datoi = dadosuser[2]
+            dataatual = data_atual.strftime("%Y-%m-%d")
+            query(f"insert into {eventoreg} (id, nome, datacompra, datacheckin) values (default, '{neme}','{dataatual}','')")
+
+
 
 
 
