@@ -56,14 +56,21 @@ while True:
 
     linha2(32)
     cabeçalho("ESCOLHA SEU USUÁRIO:")
+    print(f'''[0] SAIR
+[1] ADMIN
+[2] REGISTRAR USUÁRIO''')
 
-    arquivo = open('user.txt', 'rt', encoding='utf8')
-    for linha in arquivo:
-        linha = linha.strip()
-        print(f"[{contador}] - {linha}")
-        contador += 1
-    arquivo.close()
-    contador = 0
+    connection = mysql_connection('localhost', 'root', '', database='testeDB')
+    query = '''
+                SELECT * FROM users;
+                                                    '''
+    cursor = connection.cursor()
+    cursor.execute(query)
+    result = cursor.fetchall()
+    for dados in result:
+        print(f"[{dados[0]}] {dados[1]}")
+    connection.close()
+
     escolha = int(input("\nDigite o ID do Usuário: "))
 
     #-----------------------------------------------------------------------------------------
@@ -203,12 +210,13 @@ Participantes:''')
     if escolha == 2:
         linha2(33)
         cabeçalho("REGISTRAR NOVO USUARIO:")
-        nome = input("Digite Seu Nome: ")
+        nome = input("Digite Seu Nome: ").upper()
         data = input("Digite Sua Data de Nascimento: ")
         date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
         query(f"insert into users (id, nome, nascimento, idade, evento) values (default, '{nome}','{date}','','')")
         arquivooo = open('user.txt', 'a', encoding='utf8')
         arquivooo.write(f"\n{nome.title()}")
         arquivooo.close()
-
     #---------------------------------------------------------------------------------------------------------------------------
+
+
