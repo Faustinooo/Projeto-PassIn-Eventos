@@ -1,59 +1,12 @@
 from mysql.connector import connect
 import time
 from datetime import datetime
+from funções import *
 
 data_atual = datetime.now()
 
-# FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES
+aaa = ""
 
-def mysql_connection(host, user, passwd, database=None):
-    connection = connect(
-        host=host,
-        user=user,
-        passwd=passwd,
-        database=database
-    )
-    return connection
-
-
-def linha(a=0):
-    print(f"\033[1;{a}m-=\033[m" * 20)
-
-
-def cabeçalho(a="TEXTO"):
-    print(f"\033[1m{a.center(40)}\033[m")
-
-
-def linha2(a=0):
-    print(f"\033[1;{a}m-=\033[m" * 20)
-
-
-def query(comando=""):
-    connection = mysql_connection('localhost', 'root', '', database='testeDB')
-    query_string = f'''
-                {comando}
-                '''
-    cursor = connection.cursor()
-    cursor.execute(query_string)
-    connection.close()
-
-
-def tabela(a=""):
-    connection = mysql_connection('localhost', 'root', '', database='testeDB')
-    query_string = f'''
-                create table {a.strip()}(
-                `id` varchar(10) primary key not null,
-                `nome` varchar(100) not null,
-                `datacompra` date,
-                `datacheckin` date
-                 );
-                '''
-    cursor = connection.cursor()
-    cursor.execute(query_string)
-    connection.close()
-
-
-# FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES
 while True:
     contador = 0
 
@@ -98,9 +51,15 @@ while True:
             escolhaaction = int(input("\nDigite o Número da Ação: "))
             linha2(32)
 
+            if escolhaaction != 0 and escolhaaction != 1 and escolhaaction != 2 and escolhaaction != 3:
+                linha2(31)
+                cabeçalho("ESCOLHA UMA OPÇÃO VÁLIDA")
+                linha2(31)
+                continue
+
             if escolhaaction == 0:
                 nome = input("Digite o Nome do Evento: ")
-                data = input("Digite a Data do Evento: ")
+                data = input("Digite a Data do Evento [DD/MM/YYYY]: ").strip("/")
                 maximo = input("Digite a Capacidade Máxima: ")
                 date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
                 dato = f"{data[0:2]}/{data[3:4]}/{data[4:]}"
@@ -159,6 +118,7 @@ Participantes:''')
                 cursor = connection.cursor()
                 cursor.execute(query_string)
                 result = cursor.fetchall()
+                connection.close()
                 for i in result:
                     print(f"-{i[1]}")
                 time.sleep(2)
@@ -222,13 +182,10 @@ Participantes:''')
         linha2(33)
         cabeçalho("REGISTRAR NOVO USUARIO:")
         nome = input("Digite Seu Nome: ").upper()
-        data = input("Digite Sua Data de Nascimento: ")
+        data = input("Digite Sua Data de Nascimento [DD/MM/YYYY]: ").strip("/")
         date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
         ident = f"{nome[:2]}{data[4:]}{data[3:4]}{data[0:2]}"
         query(f"insert into users (id, nome, nascimento, idade, evento) values ('{ident}', '{nome}','{date}','','')")
-        arquivooo = open('user.txt', 'a', encoding='utf8')
-        arquivooo.write(f"\n{nome.title()}")
-        arquivooo.close()
 
     #---------------------------------------------------------------------------------------------------------------------------
 
@@ -276,6 +233,12 @@ Participantes:''')
 [3] VISUALIZAR FICHA DE INSCRIÇÃO''')
             escolhaaction = int(input("\nDigite o Número da Ação: "))
 
+            if escolhaaction != 0 and escolhaaction != 1 and escolhaaction != 2 and escolhaaction != 3:
+                linha2(31)
+                cabeçalho("ESCOLHA UMA OPÇÃO VÁLIDA")
+                linha2(31)
+                continue
+
             if escolhaaction == 0:
                 linha2(31)
                 cabeçalho("SAINDO DO USUÁRIO...")
@@ -284,49 +247,84 @@ Participantes:''')
                 break
 
             if escolhaaction == 1:
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = '''
-                                                    SELECT * FROM eventos;
-                                                '''
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                result = cursor.fetchall()
-                for i, coluna in enumerate(result):
-                    print(f"[{coluna[0]}] {coluna[1]}\n")
-                connection.close()
-                registrar = int(input("Deseja se registrar em qual evento: "))
+                if dadosuser[4] != "":
+                    linha2(31)
+                    cabeçalho(f"JÁ ESTÁ REGISTRADO NO EVENTO [{dadosuser[4]}]")
+                    linha2(31)
+                else:
+                    connection = mysql_connection('localhost', 'root', '', database='testeDB')
+                    query_string = '''
+                                                        SELECT * FROM eventos;
+                                                    '''
+                    cursor = connection.cursor()
+                    cursor.execute(query_string)
+                    result = cursor.fetchall()
+                    for i, coluna in enumerate(result):
+                        print(f"[{coluna[0]}] {coluna[1]}\n")
+                    connection.close()
+                    registrar = int(input("Deseja se registrar em qual evento: "))
 
-                #===========================================================================================================
+                    #===========================================================================================================
 
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = '''
-                                                            SELECT * FROM eventos;
-                                                                        '''
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                result = cursor.fetchall()
-                eventoreg = str("").lower()
-                for i, v in enumerate(result):
-                    if v[0] == registrar:
-                        eventoreg = v[4]
-                connection.close()
-                neme = dadosuser[1]
-                datoi = dadosuser[2]
-                dataatual = data_atual.strftime("%Y-%m-%d")
-                ident = dadosuser[0]
-                query(f"insert into {eventoreg} (id, nome, datacompra, datacheckin) values ('{ident}', '{neme}','{dataatual}','')")
-                nomemin = eventoreg.lower()
-                print(f"{nomemin} e {dadosuser[0]}")
-                query(f"update users set evento = '{nomemin}' where id = '{dadosuser[0]}';")
-                linha2(33)
-                cabeçalho(f"USUÁRIO: {dadosuser[1]} REGISTRADO NO EVENTO {eventoreg}")
-                linha2(33)
+                    connection = mysql_connection('localhost', 'root', '', database='testeDB')
+                    query_string = '''
+                                                                SELECT * FROM eventos;
+                                                                            '''
+                    cursor = connection.cursor()
+                    cursor.execute(query_string)
+                    result = cursor.fetchall()
+                    eventoreg = str("").lower()
+                    for i, v in enumerate(result):
+                        if v[0] == registrar:
+                            eventoreg = v[4]
+                    connection.close()
+                    neme = dadosuser[1]
+                    datoi = dadosuser[2]
+                    dataatual = data_atual.strftime("%Y-%m-%d")
+                    ident = dadosuser[0]
+                    query(f"insert into {eventoreg} (id, nome, datacompra, datacheckin) values ('{ident}', '{neme}','{dataatual}','')")
+                    nomemin = eventoreg.lower()
+                    print(f"{nomemin} e {dadosuser[0]}")
+                    query(f"update users set evento = '{nomemin}' where id = '{dadosuser[0]}';")
+                    linha2(33)
+                    cabeçalho(f"REGISTRO REALIZADO")
+                    linha2(33)
 
             if escolhaaction == 2:
-                nomeevento = dadosuser[4]
-                datacheck = data_atual.strftime("%Y-%m-%d")
-                query(f'''update {nomeevento} set datacheckin = '{datacheck}' where (id = '{dadosuser[0]}');''')
-                linha2(33)
-                cabeçalho("CHECK-IN REALIZADO COM SUCESSO")
-                linha2(33)
 
+                connection = mysql_connection('localhost', 'root', '', database='testeDB')
+                query_string = f'''
+                                SELECT * FROM {dadosuser[4]};
+                                '''
+
+                cursor = connection.cursor()
+                cursor.execute(query_string)
+                result = cursor.fetchall()
+                connection.close()
+                checkin = ""
+                for i in result:
+                    if i[0] == dadosuser[0]:
+                        checkin = i[3]
+                if checkin != None:
+                    linha2(31)
+                    cabeçalho(f"CHECK-IN JÁ FOI REALIZADO NO DIA [{checkin}]")
+                    linha2(31)
+                else:
+                    nomeevento = dadosuser[4]
+                    datacheck = data_atual.strftime("%Y-%m-%d")
+                    query(f'''update {nomeevento} set datacheckin = '{datacheck}' where (id = '{dadosuser[0]}');''')
+                    linha2(33)
+                    cabeçalho("CHECK-IN REALIZADO COM SUCESSO")
+                    linha2(33)
+
+            if escolhaaction == 3:
+                linha2(35)
+                cabeçalho("FICHA DE INSCRIÇÃO")
+                print(f'''ID = {dadosuser[0]}
+NOME: {dadosuser[1]}
+DATA DE NASCIMENTO: {dadosuser[2]}
+IDADE: {idade_now(dadosuser[2])} ANOS''')
+                if dadosuser[4] != "":
+                    print(f"EVENTO INSCRITO: {dadosuser[4]}")
+
+                linha2(35)
