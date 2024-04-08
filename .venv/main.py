@@ -5,8 +5,6 @@ from funções import *
 
 data_atual = datetime.now()
 
-aaa = ""
-
 while True:
     contador = 0
 
@@ -64,11 +62,11 @@ while True:
                 date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
                 dato = f"{data[0:2]}/{data[3:4]}/{data[4:]}"
                 nume = str(f"{nome}").replace(" ", "")
-                name = f"{nume} - {dato} - 0/{maximo}"
+                name = f"{nome} - {dato} - 0/{maximo}"
 
                 query(comando=f"insert into testeDB.eventos values (default, '{name}', '{date}', '{maximo}', '{nume}')")
 
-                tabela(nome)
+                tabela(nume)
                 linha2(34)
                 print("\n\033[32mEVENTO CRIADO COM SUCESSO!\033[m\n")
                 linha2(34)

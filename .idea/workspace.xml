@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16085743-4e0b-41e0-9362-c7de4fc80435" name="Changes" comment="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES">
-      <change beforePath="$PROJECT_DIR$/.idea/Projeto Passin Faustino.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projeto Passin Faustino.iml" afterDir="false" />
+    <list default="true" id="16085743-4e0b-41e0-9362-c7de4fc80435" name="Changes" comment="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES&#10;ADICIONADA VERIFICAÇÃO NA ESCOLHA DE AÇÕES&#10;ADICIONAR VERIFICAÇÃO DE INCRIÇÃO DUPLICADA E CHECK-IN DUPLICADO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.venv/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.venv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/.venv/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +91,10 @@
       <workItem from="1712525707814" duration="6485000" />
       <workItem from="1712577956766" duration="5008000" />
       <workItem from="1712586374513" duration="1349000" />
-      <workItem from="1712588197495" duration="1796000" />
+      <workItem from="1712588197495" duration="2676000" />
+      <workItem from="1712594055557" duration="600000" />
+      <workItem from="1712594726644" duration="56000" />
+      <workItem from="1712600016084" duration="941000" />
     </task>
     <task id="LOCAL-00001" summary="PILOTO">
       <option name="closed" value="true" />
@@ -151,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712581542457</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES&#10;ADICIONADA VERIFICAÇÃO NA ESCOLHA DE AÇÕES&#10;ADICIONAR VERIFICAÇÃO DE INCRIÇÃO DUPLICADA E CHECK-IN DUPLICADO">
+      <option name="closed" value="true" />
+      <created>1712590661378</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712590661378</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,10 +174,11 @@
     <MESSAGE value="CORREÇÃO DE BUGS E SINTAXE" />
     <MESSAGE value="MUDANÇA NA ESTRUTURA ID USERS PARA METODO UNIVERSAL&#10;REGISTRO DE EVENTO EM QUE A PESSOA ESTA INSCRITA&#10;REGISTRO DA DATA DE CHECKIN DO USUÁRIO NO EVENTO" />
     <MESSAGE value="CORRIGIDO ERRO (APÓS CADASTRO LOGIN ENTRAR EM USUÁRIO NULL)&#10;CORRIGIDO PERMANECER NO USUÁRIO APÓS AÇÕES&#10;ADICIONADA VERIFICAÇÃO DE ID DO USUÁRIO NA TABELA USERS" />
-    <option name="LAST_COMMIT_MESSAGE" value="CORRIGIDO ERRO (APÓS CADASTRO LOGIN ENTRAR EM USUÁRIO NULL)&#10;CORRIGIDO PERMANECER NO USUÁRIO APÓS AÇÕES&#10;ADICIONADA VERIFICAÇÃO DE ID DO USUÁRIO NA TABELA USERS" />
+    <MESSAGE value="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES&#10;ADICIONADA VERIFICAÇÃO NA ESCOLHA DE AÇÕES&#10;ADICIONAR VERIFICAÇÃO DE INCRIÇÃO DUPLICADA E CHECK-IN DUPLICADO" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES&#10;ADICIONADA VERIFICAÇÃO NA ESCOLHA DE AÇÕES&#10;ADICIONAR VERIFICAÇÃO DE INCRIÇÃO DUPLICADA E CHECK-IN DUPLICADO" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$teste.coverage" NAME="teste Coverage Results" MODIFIED="1712582332794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
-    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$main.coverage" NAME="main Coverage Results" MODIFIED="1712589970253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
+    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$main.coverage" NAME="main Coverage Results" MODIFIED="1712600863659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
   </component>
 </project>
