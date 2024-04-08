@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16085743-4e0b-41e0-9362-c7de4fc80435" name="Changes" comment="CORREÇÃO DE BUGS E SINTAXE">
+    <list default="true" id="16085743-4e0b-41e0-9362-c7de4fc80435" name="Changes" comment="MUDANÇA NA ESTRUTURA ID USERS PARA METODO UNIVERSAL&#10;REGISTRO DE EVENTO EM QUE A PESSOA ESTA INSCRITA&#10;REGISTRO DA DATA DE CHECKIN DO USUÁRIO NO EVENTO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.venv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/.venv/main.py" afterDir="false" />
     </list>
@@ -87,7 +87,7 @@
       <workItem from="1712516943884" duration="243000" />
       <workItem from="1712517539084" duration="4999000" />
       <workItem from="1712522861458" duration="88000" />
-      <workItem from="1712525707814" duration="907000" />
+      <workItem from="1712525707814" duration="6485000" />
     </task>
     <task id="LOCAL-00001" summary="PILOTO">
       <option name="closed" value="true" />
@@ -121,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712518928179</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="CORREÇÃO DE BUGS E SINTAXE">
+      <option name="closed" value="true" />
+      <created>1712526843471</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712526843471</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,9 +140,10 @@
     <MESSAGE value="INSPECIONAR EVENTO" />
     <MESSAGE value="APRIMORAMENTO SISTEMA DE USUÁRIOS" />
     <MESSAGE value="REGISTRO DE USUÁRIO NO EVENTO&#10;ENCERRAMENTO DO PROGRAMA NA INICIAÇÃO&#10;ERROS (CRIAÇÃO DE EVENTOS, REGISTRO DE USUÁRIOS EM EVENTOS)" />
-    <option name="LAST_COMMIT_MESSAGE" value="REGISTRO DE USUÁRIO NO EVENTO&#10;ENCERRAMENTO DO PROGRAMA NA INICIAÇÃO&#10;ERROS (CRIAÇÃO DE EVENTOS, REGISTRO DE USUÁRIOS EM EVENTOS)" />
+    <MESSAGE value="CORREÇÃO DE BUGS E SINTAXE" />
+    <option name="LAST_COMMIT_MESSAGE" value="CORREÇÃO DE BUGS E SINTAXE" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$main.coverage" NAME="main Coverage Results" MODIFIED="1712526344672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
+    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$main.coverage" NAME="main Coverage Results" MODIFIED="1712531974384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
   </component>
 </project>

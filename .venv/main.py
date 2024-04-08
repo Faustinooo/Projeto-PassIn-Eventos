@@ -74,7 +74,7 @@ while True:
         print(f"[{dados[0]}] {dados[1]}")
     connection.close()
 
-    escolha = int(input("\nDigite o ID do Usuário: "))
+    escolha = str(input("\nDigite o ID do Usuário: "))
 
     #-----------------------------------------------------------------------------------------
 
@@ -86,7 +86,7 @@ while True:
         time.sleep(1)
         break
 
-    if escolha == 1:
+    if escolha == '1':
         while True:
             linha2(32)
             cabeçalho("ADMINISTRADOR")
@@ -218,13 +218,13 @@ Participantes:''')
                 time.sleep(2)
                 break
 
-    if escolha == 2:
+    if escolha == '2':
         linha2(33)
         cabeçalho("REGISTRAR NOVO USUARIO:")
         nome = input("Digite Seu Nome: ").upper()
         data = input("Digite Sua Data de Nascimento: ")
         date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
-        ident = f"`{nome[:2]}{data[4:]}"
+        ident = f"{nome[:2]}{data[4:]}{data[3:4]}{data[0:2]}"
         query(f"insert into users (id, nome, nascimento, idade, evento) values ('{ident}', '{nome}','{date}','','')")
         arquivooo = open('user.txt', 'a', encoding='utf8')
         arquivooo.write(f"\n{nome.title()}")
@@ -291,10 +291,17 @@ Participantes:''')
             neme = dadosuser[1]
             datoi = dadosuser[2]
             dataatual = data_atual.strftime("%Y-%m-%d")
-            query(f"insert into {eventoreg} (id, nome, datacompra, datacheckin) values (default, '{neme}','{dataatual}','')")
+            ident = dadosuser[0]
+            query(f"insert into {eventoreg} (id, nome, datacompra, datacheckin) values ('{ident}', '{neme}','{dataatual}','')")
+            nomemin = eventoreg.lower()
+            print(f"{nomemin} e {dadosuser[0]}")
+            query(f"update users set evento = '{nomemin}' where id = '{dadosuser[0]}';")
 
-
-
-
-
+        if escolhaaction == 2:
+            nomeevento = dadosuser[4]
+            datacheck = data_atual.strftime("%Y-%m-%d")
+            query(f'''update {nomeevento} set datacheckin = '{datacheck}' where (id = '{dadosuser[0]}');''')
+            linha2(33)
+            cabeçalho("CHECK-IN REALIZADO COM SUCESSO")
+            linha2(33)
 
