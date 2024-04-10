@@ -35,6 +35,8 @@ def linha2(a=0):
     print(f"\033[1;{a}m-=\033[m" * 20)
 
 
+
+# TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
 def query(comando=""):
     connection = mysql_connection('localhost', 'root', '', database='testeDB')
     query_string = f'''
@@ -45,6 +47,8 @@ def query(comando=""):
     connection.close()
 
 
+
+# TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
 def tabela(a=""):
     connection = mysql_connection('localhost', 'root', '', database='testeDB')
     query_string = f'''

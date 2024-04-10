@@ -14,6 +14,7 @@ while True:
 [1] ADMIN
 [2] REGISTRAR USUÁRIO''')
 
+    # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
     connection = mysql_connection('localhost', 'root', '', database='testeDB')
     query_string = '''
                 SELECT * FROM users;
@@ -64,7 +65,7 @@ while True:
                 nume = str(f"{nome}").replace(" ", "")
                 name = f"{nome} - {dato} - 0/{maximo}"
 
-                query(comando=f"insert into testeDB.eventos values (default, '{name}', '{date}', '{maximo}', '{nume}')")
+                query(comando=f"insert into testeDB.eventos values (default, '{name}', '{date}', '{maximo}', '{nome}','{nume}')")
 
                 tabela(nume)
                 linha2(34)
@@ -72,6 +73,8 @@ while True:
                 linha2(34)
                 time.sleep(2)
             if escolhaaction == 1:
+
+                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
                 query_string = '''
                     SELECT * FROM eventos;
@@ -84,6 +87,7 @@ while True:
                 connection.close()
                 inspecionar = int(input("Deseja inspecionar qual evento: "))
 
+                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
                 query_string = '''
                                     SELECT * FROM eventos;
@@ -98,7 +102,7 @@ while True:
                 for i, v in enumerate(result):
                     numero = v[0]
                     if numero == inspecionar:
-                        instabela = v[4]
+                        instabela = v[5]
                         dataevento = v[2]
                         maximoevento = v[3]
                 print(f'''
@@ -109,6 +113,7 @@ Capacidade Máxima: {maximoevento}
 Participantes:''')
                 connection.close()
 
+                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
                 query_string = f'''
                             SELECT * FROM {instabela};
@@ -122,6 +127,8 @@ Participantes:''')
                 time.sleep(2)
 
             if escolhaaction == 2:
+
+                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
                 query_string = '''
                                     SELECT * FROM eventos;
@@ -134,6 +141,7 @@ Participantes:''')
                 connection.close()
                 inspecionar = int(input("Deseja Apagar qual evento: "))
 
+                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
                 query_string = '''
                                     SELECT * FROM eventos;
@@ -146,11 +154,12 @@ Participantes:''')
                 for i, v in enumerate(result):
                     numero = v[0]
                     if numero == inspecionar:
-                        aptabela = v[4]
+                        aptabela = v[5]
                 connection.close()
 
                 #--------------------------------------------------------------------------------------------------
 
+                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
                 query_string = f'''
                         delete from eventos where (nome = '{aptabela}');
@@ -161,6 +170,7 @@ Participantes:''')
 
                 #---------------------------------------------------------------------------------------------------
 
+                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
                 query_string = f'''
                         drop table {aptabela};
@@ -188,6 +198,8 @@ Participantes:''')
     #---------------------------------------------------------------------------------------------------------------------------
 
     if escolha != 0 and escolha != 1 and escolha != 2:
+
+        # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
         connection = mysql_connection('localhost', 'root', '', database='testeDB')
         query_string = '''
                                                                     SELECT * FROM users;
@@ -208,6 +220,8 @@ Participantes:''')
 
         connection.close()
         while True:
+
+            # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
             connection = mysql_connection('localhost', 'root', '', database='testeDB')
             query_string = '''
                                                 SELECT * FROM users;
@@ -250,6 +264,8 @@ Participantes:''')
                     cabeçalho(f"JÁ ESTÁ REGISTRADO NO EVENTO [{dadosuser[4]}]")
                     linha2(31)
                 else:
+
+                    # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                     connection = mysql_connection('localhost', 'root', '', database='testeDB')
                     query_string = '''
                                                         SELECT * FROM eventos;
@@ -264,6 +280,7 @@ Participantes:''')
 
                     #===========================================================================================================
 
+                    # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                     connection = mysql_connection('localhost', 'root', '', database='testeDB')
                     query_string = '''
                                                                 SELECT * FROM eventos;
@@ -274,8 +291,27 @@ Participantes:''')
                     eventoreg = str("").lower()
                     for i, v in enumerate(result):
                         if v[0] == registrar:
-                            eventoreg = v[4]
+                            eventoreg = v[5]
+                            maxevento = v[3]
+                            dataev = v[2]
+                            nomeatual = v[1]
+                            nometotal = v[4]
+
                     connection.close()
+
+                    # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
+                    connection = mysql_connection('localhost', 'root', '', database='testeDB')
+                    query_string = f'''
+                                        SELECT * FROM {eventoreg};
+                                                                                                '''
+                    cursor = connection.cursor()
+                    cursor.execute(query_string)
+                    result = cursor.fetchall()
+                    connection.close()
+
+                    #CADASTRO DO USUÁRIO
+
+                    nomenovo = f"{nometotal} - {dataev} - {len(result) + 1}/{maxevento}"
                     neme = dadosuser[1]
                     datoi = dadosuser[2]
                     dataatual = data_atual.strftime("%Y-%m-%d")
@@ -284,12 +320,17 @@ Participantes:''')
                     nomemin = eventoreg.lower()
                     print(f"{nomemin} e {dadosuser[0]}")
                     query(f"update users set evento = '{nomemin}' where id = '{dadosuser[0]}';")
+
+                    # TROCAR NUMERO DE PESSOAS NO EVENTO
+
+                    query(f'''UPDATE eventos SET titulo = '{nomenovo}' WHERE titulo = '{nomeatual}';''')
                     linha2(33)
                     cabeçalho(f"REGISTRO REALIZADO")
                     linha2(33)
 
             if escolhaaction == 2:
 
+                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
                 connection = mysql_connection('localhost', 'root', '', database='testeDB')
                 query_string = f'''
                                 SELECT * FROM {dadosuser[4]};

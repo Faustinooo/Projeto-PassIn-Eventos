@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16085743-4e0b-41e0-9362-c7de4fc80435" name="Changes" comment="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES&#10;ADICIONADA VERIFICAÇÃO NA ESCOLHA DE AÇÕES&#10;ADICIONAR VERIFICAÇÃO DE INCRIÇÃO DUPLICADA E CHECK-IN DUPLICADO">
+    <list default="true" id="16085743-4e0b-41e0-9362-c7de4fc80435" name="Changes" comment="PASTAS RESTANTES">
+      <change afterPath="$PROJECT_DIR$/.venv/BANCO.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.venv/funções/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/.venv/funções/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.venv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/.venv/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,27 +49,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.teste.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.BANCO.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.teste.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -94,7 +97,9 @@
       <workItem from="1712588197495" duration="2676000" />
       <workItem from="1712594055557" duration="600000" />
       <workItem from="1712594726644" duration="56000" />
-      <workItem from="1712600016084" duration="941000" />
+      <workItem from="1712600016084" duration="2150000" />
+      <workItem from="1712602410326" duration="52000" />
+      <workItem from="1712756127097" duration="2960000" />
     </task>
     <task id="LOCAL-00001" summary="PILOTO">
       <option name="closed" value="true" />
@@ -160,11 +165,38 @@
       <option name="project" value="LOCAL" />
       <updated>1712590661378</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES&#10;ADICIONADA VERIFICAÇÃO NA ESCOLHA DE AÇÕES&#10;ADICIONADA VERIFICAÇÃO DE INCRIÇÃO DUPLICADA E CHECK-IN DUPLICADO">
+      <option name="closed" value="true" />
+      <created>1712601515791</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712601515791</updated>
+    </task>
+    <task id="LOCAL-00010" summary="PASTAS RESTANTES">
+      <option name="closed" value="true" />
+      <created>1712601635648</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712601635648</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="PILOTO" />
@@ -175,10 +207,13 @@
     <MESSAGE value="MUDANÇA NA ESTRUTURA ID USERS PARA METODO UNIVERSAL&#10;REGISTRO DE EVENTO EM QUE A PESSOA ESTA INSCRITA&#10;REGISTRO DA DATA DE CHECKIN DO USUÁRIO NO EVENTO" />
     <MESSAGE value="CORRIGIDO ERRO (APÓS CADASTRO LOGIN ENTRAR EM USUÁRIO NULL)&#10;CORRIGIDO PERMANECER NO USUÁRIO APÓS AÇÕES&#10;ADICIONADA VERIFICAÇÃO DE ID DO USUÁRIO NA TABELA USERS" />
     <MESSAGE value="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES&#10;ADICIONADA VERIFICAÇÃO NA ESCOLHA DE AÇÕES&#10;ADICIONAR VERIFICAÇÃO DE INCRIÇÃO DUPLICADA E CHECK-IN DUPLICADO" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES&#10;ADICIONADA VERIFICAÇÃO NA ESCOLHA DE AÇÕES&#10;ADICIONAR VERIFICAÇÃO DE INCRIÇÃO DUPLICADA E CHECK-IN DUPLICADO" />
+    <MESSAGE value="ADICIONADA FUNÇÃO DO USUÁRIO VISUALIZAR FICHA DE INSCRIÇÃO&#10;ADICIONADA FUNÇÃO DE CÁLCULO DE IDADE DO USUÁRIO&#10;CRIADA UMA PASTA COM FUNÇÕES&#10;ADICIONADA VERIFICAÇÃO NA ESCOLHA DE AÇÕES&#10;ADICIONADA VERIFICAÇÃO DE INCRIÇÃO DUPLICADA E CHECK-IN DUPLICADO" />
+    <MESSAGE value="PASTAS RESTANTES" />
+    <option name="LAST_COMMIT_MESSAGE" value="PASTAS RESTANTES" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$BANCO.coverage" NAME="BANCO Coverage Results" MODIFIED="1712758851527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
     <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$teste.coverage" NAME="teste Coverage Results" MODIFIED="1712582332794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
-    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$main.coverage" NAME="main Coverage Results" MODIFIED="1712600863659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
+    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$main.coverage" NAME="main Coverage Results" MODIFIED="1712757980689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
   </component>
 </project>
