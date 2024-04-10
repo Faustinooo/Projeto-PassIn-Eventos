@@ -18,3 +18,4 @@ query(f'''create table users(
     `evento` varchar(40)
 );''')
 
+print("BANCO DE DADOS ATUALIZADO COM SUCESSO")
