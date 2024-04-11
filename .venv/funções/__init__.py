@@ -72,4 +72,18 @@ def mysql_connection(host, user, passwd, database=None):
     )
     return connection
 
+# TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
+def buscardados(tabela = ""):
+    connection = mysql_connection('localhost', 'root', '', database='testeDB')
+    query_string = f'''
+                                    SELECT * FROM {tabela};
+                                    '''
+
+    cursor = connection.cursor()
+    cursor.execute(query_string)
+    result = cursor.fetchall()
+    connection.close()
+    return result
+
+
 # FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES

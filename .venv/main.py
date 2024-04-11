@@ -14,17 +14,10 @@ while True:
 [1] ADMIN
 [2] REGISTRAR USUÁRIO''')
 
-    # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-    connection = mysql_connection('localhost', 'root', '', database='testeDB')
-    query_string = '''
-                SELECT * FROM users;
-                                                    '''
-    cursor = connection.cursor()
-    cursor.execute(query_string)
-    result = cursor.fetchall()
+    result = buscardados("users")
+
     for dados in result:
         print(f"[{dados[0]}] {dados[1]}")
-    connection.close()
 
     escolha = str(input("\nDigite o ID do Usuário: "))
 
@@ -72,29 +65,16 @@ while True:
                 print("\n\033[32mEVENTO CRIADO COM SUCESSO!\033[m\n")
                 linha2(34)
                 time.sleep(2)
+
             if escolhaaction == 1:
 
-                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = '''
-                    SELECT * FROM eventos;
-                '''
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                result = cursor.fetchall()
+                result = buscardados("eventos")
                 for i, coluna in enumerate(result):
                     print(f"[{coluna[0]}] {coluna[1]}\n")
-                connection.close()
                 inspecionar = int(input("Deseja inspecionar qual evento: "))
 
-                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = '''
-                                    SELECT * FROM eventos;
-                                '''
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                result = cursor.fetchall()
+                result = buscardados("eventos")
+
                 instabela = ""
                 dataevento = ""
                 maximoevento = 0
@@ -111,73 +91,37 @@ Data: {dataevento}
 Capacidade Máxima: {maximoevento} 
                 
 Participantes:''')
-                connection.close()
 
-                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = f'''
-                            SELECT * FROM {instabela};
-                                                '''
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                result = cursor.fetchall()
-                connection.close()
+                result = buscardados(instabela)
+
                 for i in result:
                     print(f"-{i[1]}")
                 time.sleep(2)
 
             if escolhaaction == 2:
 
-                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = '''
-                                    SELECT * FROM eventos;
-                                '''
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                result = cursor.fetchall()
+                result = buscardados("eventos")
                 for i, coluna in enumerate(result):
                     print(f"[{coluna[0]}] {coluna[1]}\n")
-                connection.close()
-                inspecionar = int(input("Deseja Apagar qual evento: "))
 
-                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = '''
-                                    SELECT * FROM eventos;
-                                                '''
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                result = cursor.fetchall()
+                apagar = int(input("Deseja Apagar qual evento: "))
+
+                result = buscardados("eventos")
                 aptabela = ""
                 numero = 0
                 for i, v in enumerate(result):
                     numero = v[0]
                     if numero == inspecionar:
                         aptabela = v[5]
-                connection.close()
 
                 #--------------------------------------------------------------------------------------------------
 
-                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = f'''
-                        delete from eventos where (nome = '{aptabela}');
-                                '''
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                connection.close()
+                query(f'''delete from eventos where (nometabela = '{aptabela}');''')
+                query(f'''UPDATE users SET evento = '' WHERE evento = '{aptabela}';''')
 
                 #---------------------------------------------------------------------------------------------------
 
-                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = f'''
-                        drop table {aptabela};
-                                                '''
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                connection.close()
+                query(f'''drop table {aptabela};''')
 
             if escolhaaction == 3:
                 linha2(31)
@@ -194,19 +138,15 @@ Participantes:''')
         date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
         ident = f"{nome[:2]}{data[4:]}{data[3:4]}{data[0:2]}"
         query(f"insert into users (id, nome, nascimento, idade, evento) values ('{ident}', '{nome}','{date}','','')")
+        linha2(33)
+        continue
 
     #---------------------------------------------------------------------------------------------------------------------------
 
     if escolha != 0 and escolha != 1 and escolha != 2:
 
-        # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-        connection = mysql_connection('localhost', 'root', '', database='testeDB')
-        query_string = '''
-                                                                    SELECT * FROM users;
-                                                                                '''
-        cursor = connection.cursor()
-        cursor.execute(query_string)
-        result = cursor.fetchall()
+        result = buscardados("users")
+
         listaid = []
         for i in result:
             listaid.append(i[0])
@@ -218,34 +158,26 @@ Participantes:''')
             linha2(31)
             continue
 
-        connection.close()
         while True:
 
-            # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-            connection = mysql_connection('localhost', 'root', '', database='testeDB')
-            query_string = '''
-                                                SELECT * FROM users;
-                                                            '''
-            cursor = connection.cursor()
-            cursor.execute(query_string)
-            result = cursor.fetchall()
+            result = buscardados("users")
             dadosuser = []
             nome = ""
             for i, v in enumerate(result):
                 if v[0] == escolha:
                     nome = v[1]
                     dadosuser = v
-            connection.close()
             linha2(34)
             cabeçalho(f"USUÁRIO: {nome}")
             cabeçalho("OPÇÕES:")
             print(f'''[0] SAIR
 [1] REGISTRAR EM UM EVENTO
 [2] REALIZAR CHECK IN
-[3] VISUALIZAR FICHA DE INSCRIÇÃO''')
+[3] VISUALIZAR FICHA DE INSCRIÇÃO
+[4] SAIR DO EVENTO REGISTRADO''')
             escolhaaction = int(input("\nDigite o Número da Ação: "))
 
-            if escolhaaction != 0 and escolhaaction != 1 and escolhaaction != 2 and escolhaaction != 3:
+            if escolhaaction != 0 and escolhaaction != 1 and escolhaaction != 2 and escolhaaction != 3 and escolhaaction != 4:
                 linha2(31)
                 cabeçalho("ESCOLHA UMA OPÇÃO VÁLIDA")
                 linha2(31)
@@ -265,29 +197,15 @@ Participantes:''')
                     linha2(31)
                 else:
 
-                    # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                    connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                    query_string = '''
-                                                        SELECT * FROM eventos;
-                                                    '''
-                    cursor = connection.cursor()
-                    cursor.execute(query_string)
-                    result = cursor.fetchall()
+                    result = buscardados("eventos")
+
                     for i, coluna in enumerate(result):
                         print(f"[{coluna[0]}] {coluna[1]}\n")
-                    connection.close()
                     registrar = int(input("Deseja se registrar em qual evento: "))
 
                     #===========================================================================================================
 
-                    # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                    connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                    query_string = '''
-                                                                SELECT * FROM eventos;
-                                                                            '''
-                    cursor = connection.cursor()
-                    cursor.execute(query_string)
-                    result = cursor.fetchall()
+                    result = buscardados("eventos")
                     eventoreg = str("").lower()
                     for i, v in enumerate(result):
                         if v[0] == registrar:
@@ -297,17 +215,7 @@ Participantes:''')
                             nomeatual = v[1]
                             nometotal = v[4]
 
-                    connection.close()
-
-                    # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                    connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                    query_string = f'''
-                                        SELECT * FROM {eventoreg};
-                                                                                                '''
-                    cursor = connection.cursor()
-                    cursor.execute(query_string)
-                    result = cursor.fetchall()
-                    connection.close()
+                    result = buscardados(eventoreg)
 
                     #CADASTRO DO USUÁRIO
 
@@ -330,24 +238,17 @@ Participantes:''')
 
             if escolhaaction == 2:
 
-                # TROQUE AS INFORMÇÕES DA VARIÁVEL CONNECTION DE ACORDO COM A SUA CONEXÃO
-                connection = mysql_connection('localhost', 'root', '', database='testeDB')
-                query_string = f'''
-                                SELECT * FROM {dadosuser[4]};
-                                '''
-
-                cursor = connection.cursor()
-                cursor.execute(query_string)
-                result = cursor.fetchall()
-                connection.close()
+                result = buscareventos(dadosuser[4])
                 checkin = ""
                 for i in result:
                     if i[0] == dadosuser[0]:
                         checkin = i[3]
+
                 if checkin != None:
                     linha2(31)
                     cabeçalho(f"CHECK-IN JÁ FOI REALIZADO NO DIA [{checkin}]")
                     linha2(31)
+
                 else:
                     nomeevento = dadosuser[4]
                     datacheck = data_atual.strftime("%Y-%m-%d")
@@ -367,3 +268,14 @@ IDADE: {idade_now(dadosuser[2])} ANOS''')
                     print(f"EVENTO INSCRITO: {dadosuser[4]}")
 
                 linha2(35)
+            if escolhaaction == 4:
+                if dadosuser[4] != "":
+                    query(f'''delete from {dadosuser[4]} where (id = '{dadosuser[0]}')''')
+                    query(f'''update users set evento = "" where (id = '{dadosuser[0]}');''')
+                    linha2(32)
+                    cabeçalho("INSCRIÇÃO CANCELADA COM SUCESSO")
+                    linha(32)
+                else:
+                    linha2(31)
+                    cabeçalho("USUÁRIO NÃO REGISTRADO EM NENHUM EVENTO")
+                    linha2(31)
