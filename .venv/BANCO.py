@@ -7,7 +7,8 @@ query(f'''CREATE TABLE eventos(
     `data` date,
     `Maximo` int not null ,
     `nome` varchar(40),
-    `nometabela` VARCHAR(40)    
+    `nometabela` VARCHAR(40),
+    `inscritos` int
 );''')
 
 query(f'''create table users(

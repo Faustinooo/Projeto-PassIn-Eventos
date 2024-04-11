@@ -58,7 +58,7 @@ while True:
                 nume = str(f"{nome}").replace(" ", "")
                 name = f"{nome} - {dato} - 0/{maximo}"
 
-                query(comando=f"insert into testeDB.eventos values (default, '{name}', '{date}', '{maximo}', '{nome}','{nume}')")
+                query(comando=f"insert into testeDB.eventos values (default, '{name}', '{date}', '{maximo}', '{nome}','{nume}', '')")
 
                 tabela(nume)
                 linha2(34)
@@ -111,7 +111,7 @@ Participantes:''')
                 numero = 0
                 for i, v in enumerate(result):
                     numero = v[0]
-                    if numero == inspecionar:
+                    if numero == apagar:
                         aptabela = v[5]
 
                 #--------------------------------------------------------------------------------------------------
@@ -214,12 +214,12 @@ Participantes:''')
                             dataev = v[2]
                             nomeatual = v[1]
                             nometotal = v[4]
-
+                            inscritos = v[6]
                     result = buscardados(eventoreg)
 
                     #CADASTRO DO USUÁRIO
-
-                    nomenovo = f"{nometotal} - {dataev} - {len(result) + 1}/{maxevento}"
+                    inscritos += 1
+                    nomenovo = f"{nometotal} - {dataev} - {inscritos}/{maxevento}"
                     neme = dadosuser[1]
                     datoi = dadosuser[2]
                     dataatual = data_atual.strftime("%Y-%m-%d")
@@ -272,6 +272,22 @@ IDADE: {idade_now(dadosuser[2])} ANOS''')
                 if dadosuser[4] != "":
                     query(f'''delete from {dadosuser[4]} where (id = '{dadosuser[0]}')''')
                     query(f'''update users set evento = "" where (id = '{dadosuser[0]}');''')
+
+                    result = buscardados("eventos")
+                    for v in result:
+                        if v[5] == dadosuser[4]:
+                            eventoreg = v[5]
+                            maxevento = v[3]
+                            dataev = v[2]
+                            nomeatual = v[1]
+                            nometotal = v[4]
+                            inscritos = v[6]
+                    inscritos -= 1
+                    query(f'''update eventos set inscritos = '{inscritos}' where (titulo = '{nomeatual}');''')
+                    nomenovo = f"{nometotal} - {dataev} - {inscritos}/{maxevento}"
+
+                    query(f'''UPDATE eventos SET titulo = '{nomenovo}' WHERE titulo = '{nomeatual}';''')
+
                     linha2(32)
                     cabeçalho("INSCRIÇÃO CANCELADA COM SUCESSO")
                     linha(32)
