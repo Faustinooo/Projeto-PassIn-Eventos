@@ -214,12 +214,14 @@ Participantes:''')
                             dataev = v[2]
                             nomeatual = v[1]
                             nometotal = v[4]
-                            inscritos = v[6]
+                            inscritoss = v[6]
+
                     result = buscardados(eventoreg)
 
                     #CADASTRO DO USUÁRIO
-                    inscritos += 1
-                    nomenovo = f"{nometotal} - {dataev} - {inscritos}/{maxevento}"
+                    inscritoss += 1
+                    query(f"update eventos set inscritos = '{inscritoss}' where (titulo = '{nomeatual}');")
+                    nomenovo = f"{nometotal} - {dataev} - {inscritoss}/{maxevento}"
                     neme = dadosuser[1]
                     datoi = dadosuser[2]
                     dataatual = data_atual.strftime("%Y-%m-%d")
@@ -271,7 +273,6 @@ IDADE: {idade_now(dadosuser[2])} ANOS''')
             if escolhaaction == 4:
                 if dadosuser[4] != "":
                     query(f'''delete from {dadosuser[4]} where (id = '{dadosuser[0]}')''')
-                    query(f'''update users set evento = "" where (id = '{dadosuser[0]}');''')
 
                     result = buscardados("eventos")
                     for v in result:
@@ -281,12 +282,15 @@ IDADE: {idade_now(dadosuser[2])} ANOS''')
                             dataev = v[2]
                             nomeatual = v[1]
                             nometotal = v[4]
-                            inscritos = v[6]
+                            inscritos = int(v[6])
+                            id = v[0]
+
                     inscritos -= 1
-                    query(f'''update eventos set inscritos = '{inscritos}' where (titulo = '{nomeatual}');''')
+                    query(f"update eventos set inscritos = '{inscritos}' where (id  = '{id}');")
                     nomenovo = f"{nometotal} - {dataev} - {inscritos}/{maxevento}"
 
                     query(f'''UPDATE eventos SET titulo = '{nomenovo}' WHERE titulo = '{nomeatual}';''')
+                    query(f'''update users set evento = "" where (id = '{dadosuser[0]}');''')
 
                     linha2(32)
                     cabeçalho("INSCRIÇÃO CANCELADA COM SUCESSO")

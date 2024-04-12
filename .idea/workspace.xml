@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16085743-4e0b-41e0-9362-c7de4fc80435" name="Changes" comment="-QUANDO EVENTO É APAGADO SEUS PARTICIPANTES SÃO AUTOMATICAMENTE RETIRADOS DO EVENTO&#10;&#10;-RESOLVIDO ERRO USUÁRIO INVÁLIDO&#10;&#10;-CRIAÇÃO OPÇÃO DE SAIR DO EVENTO PARA O USUÁRIO&#10;&#10;-CRIAÇÃO DE FUNÇÃO PARA BUSCA DE DADOS EM TABELAS&#10;&#10;CORRIGIR:&#10;&#10;-ATUALIZAR NÚMERO DE PESSOAS NO EVENTO APÓS SAÍDA DO USUÁRIO">
+    <list default="true" id="16085743-4e0b-41e0-9362-c7de4fc80435" name="Changes" comment="-QUANDO EVENTO É APAGADO SEUS PARTICIPANTES SÃO AUTOMATICAMENTE RETIRADOS DO EVENTO&#10;&#10;-RESOLVIDO ERRO USUÁRIO INVÁLIDO&#10;&#10;-CRIAÇÃO OPÇÃO DE SAIR DO EVENTO PARA O USUÁRIO&#10;&#10;-CRIAÇÃO DE FUNÇÃO PARA BUSCA DE DADOS EM TABELAS&#10;&#10;-ATUALIZAR NÚMERO DE PESSOAS NO EVENTO APÓS SAÍDA DO USUÁRIO&#10;&#10;CORRIGIR:&#10;&#10;-QUANDO SOMENTE HÁ UM USUÁRIO NO EVENTO E ELE SAI DO EVENTO O NÚMERO PERMANECE 1 A MENOS QUE OUTRO USUÁRIO ENTRE E SAIA">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/BANCO.py" beforeDir="false" afterPath="$PROJECT_DIR$/.venv/BANCO.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.venv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/.venv/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,28 +47,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.BANCO.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.teste.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.BANCO.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.teste.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -101,7 +100,9 @@
       <workItem from="1712756127097" duration="5286000" />
       <workItem from="1712761639905" duration="10000" />
       <workItem from="1712792515315" duration="130000" />
-      <workItem from="1712837492808" duration="3283000" />
+      <workItem from="1712837492808" duration="4293000" />
+      <workItem from="1712946354691" duration="303000" />
+      <workItem from="1712948522207" duration="2979000" />
     </task>
     <task id="LOCAL-00001" summary="PILOTO">
       <option name="closed" value="true" />
@@ -207,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712839519563</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="-QUANDO EVENTO É APAGADO SEUS PARTICIPANTES SÃO AUTOMATICAMENTE RETIRADOS DO EVENTO&#10;&#10;-RESOLVIDO ERRO USUÁRIO INVÁLIDO&#10;&#10;-CRIAÇÃO OPÇÃO DE SAIR DO EVENTO PARA O USUÁRIO&#10;&#10;-CRIAÇÃO DE FUNÇÃO PARA BUSCA DE DADOS EM TABELAS&#10;&#10;-ATUALIZAR NÚMERO DE PESSOAS NO EVENTO APÓS SAÍDA DO USUÁRIO&#10;&#10;CORRIGIR:&#10;&#10;-QUANDO SOMENTE HÁ UM USUÁRIO NO EVENTO E ELE SAI DO EVENTO O NÚMERO PERMANECE 1 A MENOS QUE OUTRO USUÁRIO ENTRE E SAIA">
+      <option name="closed" value="true" />
+      <created>1712841777608</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1712841777608</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,11 +247,19 @@
     <MESSAGE value="IMPLEMENTAÇÃO DO NÚMERO DE PESSOAS NO EVENTO / MÁXIMO APÓS REGISTRO DO USUÁRIO&#10;&#10;COISAS A RESOLVER:&#10;&#10;RESOLVER ERRO USUÁRIO INVÁLIDO&#10;NECESSÁRIA CRIAÇÃO DE FUNÇÃO PARA BUSCA DE DADOS EM TABELAS" />
     <MESSAGE value="ADICIONADO ARQUIVO PARA CRIAÇÃO DO AMBIENTE DO BANCO DE DADOS (BANCO.py)&#10;&#10;COISAS A RESOLVER:&#10;&#10;RESOLVER ERRO USUÁRIO INVÁLIDO&#10;NECESSÁRIA CRIAÇÃO DE FUNÇÃO PARA BUSCA DE DADOS EM TABELAS" />
     <MESSAGE value="-QUANDO EVENTO É APAGADO SEUS PARTICIPANTES SÃO AUTOMATICAMENTE RETIRADOS DO EVENTO&#10;&#10;-RESOLVIDO ERRO USUÁRIO INVÁLIDO&#10;&#10;-CRIAÇÃO OPÇÃO DE SAIR DO EVENTO PARA O USUÁRIO&#10;&#10;-CRIAÇÃO DE FUNÇÃO PARA BUSCA DE DADOS EM TABELAS&#10;&#10;CORRIGIR:&#10;&#10;-ATUALIZAR NÚMERO DE PESSOAS NO EVENTO APÓS SAÍDA DO USUÁRIO" />
-    <option name="LAST_COMMIT_MESSAGE" value="-QUANDO EVENTO É APAGADO SEUS PARTICIPANTES SÃO AUTOMATICAMENTE RETIRADOS DO EVENTO&#10;&#10;-RESOLVIDO ERRO USUÁRIO INVÁLIDO&#10;&#10;-CRIAÇÃO OPÇÃO DE SAIR DO EVENTO PARA O USUÁRIO&#10;&#10;-CRIAÇÃO DE FUNÇÃO PARA BUSCA DE DADOS EM TABELAS&#10;&#10;CORRIGIR:&#10;&#10;-ATUALIZAR NÚMERO DE PESSOAS NO EVENTO APÓS SAÍDA DO USUÁRIO" />
+    <MESSAGE value="-QUANDO EVENTO É APAGADO SEUS PARTICIPANTES SÃO AUTOMATICAMENTE RETIRADOS DO EVENTO&#10;&#10;-RESOLVIDO ERRO USUÁRIO INVÁLIDO&#10;&#10;-CRIAÇÃO OPÇÃO DE SAIR DO EVENTO PARA O USUÁRIO&#10;&#10;-CRIAÇÃO DE FUNÇÃO PARA BUSCA DE DADOS EM TABELAS&#10;&#10;-ATUALIZAR NÚMERO DE PESSOAS NO EVENTO APÓS SAÍDA DO USUÁRIO&#10;&#10;CORRIGIR:&#10;&#10;-QUANDO SOMENTE HÁ UM USUÁRIO NO EVENTO E ELE SAI DO EVENTO O NÚMERO PERMANECE 1 A MENOS QUE OUTRO USUÁRIO ENTRE E SAIA" />
+    <option name="LAST_COMMIT_MESSAGE" value="-QUANDO EVENTO É APAGADO SEUS PARTICIPANTES SÃO AUTOMATICAMENTE RETIRADOS DO EVENTO&#10;&#10;-RESOLVIDO ERRO USUÁRIO INVÁLIDO&#10;&#10;-CRIAÇÃO OPÇÃO DE SAIR DO EVENTO PARA O USUÁRIO&#10;&#10;-CRIAÇÃO DE FUNÇÃO PARA BUSCA DE DADOS EM TABELAS&#10;&#10;-ATUALIZAR NÚMERO DE PESSOAS NO EVENTO APÓS SAÍDA DO USUÁRIO&#10;&#10;CORRIGIR:&#10;&#10;-QUANDO SOMENTE HÁ UM USUÁRIO NO EVENTO E ELE SAI DO EVENTO O NÚMERO PERMANECE 1 A MENOS QUE OUTRO USUÁRIO ENTRE E SAIA" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="v" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$BANCO.coverage" NAME="BANCO Coverage Results" MODIFIED="1712840575783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
+    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$BANCO.coverage" NAME="BANCO Coverage Results" MODIFIED="1712950125060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
     <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$teste.coverage" NAME="teste Coverage Results" MODIFIED="1712582332794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
-    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$main.coverage" NAME="main Coverage Results" MODIFIED="1712840627159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
+    <SUITE FILE_PATH="coverage/Projeto_Passin_Faustino$main.coverage" NAME="main Coverage Results" MODIFIED="1712951390255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.venv" />
   </component>
 </project>
