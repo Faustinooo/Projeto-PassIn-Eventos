@@ -50,9 +50,33 @@ while True:
                 continue
 
             if escolhaaction == 0:
-                nome = input("Digite o Nome do Evento: ")
-                data = input("Digite a Data do Evento [DD/MM/YYYY]: ").strip("/")
-                maximo = input("Digite a Capacidade Máxima: ")
+                while True:
+                    nome = input("Digite o Nome do Evento: ")
+                    if nome != "":
+                        break
+                    else:
+                        linha2(31)
+                        cabeçalho("\033[31mNOME INVÁLIDO\033[m")
+                        linha2(31)
+
+                while True:
+                    data = input("Digite a Data do Evento [DD/MM/YYYY]: ").strip("/")
+                    verificacao = vefdata(data)
+                    if verificacao == True:
+                        break
+                    else:
+                        linha2(31)
+                        cabeçalho("\033[31mDATA INVÁLIDA\033[m")
+                        linha2(31)
+                while True:
+                    maximo = input("Digite a Capacidade Máxima: ")
+                    if maximo.isalpha() or maximo == "" or int(maximo) <= 0:
+                        linha2(31)
+                        cabeçalho("\033[31mCAPACIDADE INVÁLIDA\033[m")
+                        linha2(31)
+                    else:
+                        break
+
                 date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
                 dato = f"{data[0:2]}/{data[3:4]}/{data[4:]}"
                 nume = str(f"{nome}").replace(" ", "")
@@ -67,11 +91,27 @@ while True:
                 time.sleep(2)
 
             if escolhaaction == 1:
+                eventoscad = buscardados("eventos")
 
+                if len(eventoscad) == 0:
+                    linha2(31)
+                    cabeçalho("NÃO HÁ EVENTOS DISPONÍVEIS")
+                    linha2(31)
+                    continue
+
+                ids = ""
                 result = buscardados("eventos")
                 for i, coluna in enumerate(result):
                     print(f"[{coluna[0]}] {coluna[1]}\n")
-                inspecionar = int(input("Deseja inspecionar qual evento: "))
+                    ids += f"{coluna[0]}"
+                while True:
+                    inspecionar = str(input("Deseja inspecionar qual evento: "))
+                    if inspecionar not in ids:
+                        linha2(31)
+                        cabeçalho("\033[31mID INVÁLIDO\033[m")
+                        linha2(31)
+                    else:
+                        break
 
                 result = buscardados("eventos")
 
@@ -81,7 +121,7 @@ while True:
                 numero = 0
                 for i, v in enumerate(result):
                     numero = v[0]
-                    if numero == inspecionar:
+                    if numero == int(inspecionar):
                         instabela = v[5]
                         dataevento = v[2]
                         maximoevento = v[3]
@@ -99,19 +139,35 @@ Participantes:''')
                 time.sleep(2)
 
             if escolhaaction == 2:
+                eventoscad = buscardados("eventos")
 
+                if len(eventoscad) == 0:
+                    linha2(31)
+                    cabeçalho("NÃO HÁ EVENTOS DISPONÍVEIS")
+                    linha2(31)
+                    continue
+
+                ids = ""
                 result = buscardados("eventos")
                 for i, coluna in enumerate(result):
                     print(f"[{coluna[0]}] {coluna[1]}\n")
+                    ids += f"{coluna[0]}"
 
-                apagar = int(input("Deseja Apagar qual evento: "))
+                while True:
+                    apagar = str(input("Deseja Apagar qual evento: "))
+                    if inspecionar not in ids:
+                        linha2(31)
+                        cabeçalho("\033[31mID INVÁLIDO\033[m")
+                        linha2(31)
+                    else:
+                        break
 
                 result = buscardados("eventos")
                 aptabela = ""
                 numero = 0
                 for i, v in enumerate(result):
                     numero = v[0]
-                    if numero == apagar:
+                    if numero == str(apagar):
                         aptabela = v[5]
 
                 #--------------------------------------------------------------------------------------------------
@@ -133,8 +189,23 @@ Participantes:''')
     if escolha == '2':
         linha2(33)
         cabeçalho("REGISTRAR NOVO USUARIO:")
-        nome = input("Digite Seu Nome: ").upper()
-        data = input("Digite Sua Data de Nascimento [DD/MM/YYYY]: ").strip("/")
+        while True:
+            nome = str(input("Digite o Nome do Evento: ")).upper()
+            if nome != "":
+                break
+            else:
+                linha2(31)
+                cabeçalho("\033[31mNOME INVÁLIDO\033[m")
+                linha2(31)
+        while True:
+            data = input("Digite a Data do Evento [DD/MM/YYYY]: ").strip("/")
+            verificacao = vefdata(data)
+            if verificacao == True:
+                break
+            else:
+                linha2(31)
+                cabeçalho("\033[31mDATA INVÁLIDA\033[m")
+                linha2(31)
         date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
         ident = f"{nome[:2]}{data[4:]}{data[3:4]}{data[0:2]}"
         query(f"insert into users (id, nome, nascimento, idade, evento) values ('{ident}', '{nome}','{date}','','')")
@@ -191,6 +262,14 @@ Participantes:''')
                 break
 
             if escolhaaction == 1:
+                eventoscad = buscardados("eventos")
+
+                if len(eventoscad) == 0:
+                    linha2(31)
+                    cabeçalho("NÃO HÁ EVENTOS DISPONÍVEIS")
+                    linha2(31)
+                    continue
+
                 if dadosuser[4] != "":
                     linha2(31)
                     cabeçalho(f"JÁ ESTÁ REGISTRADO NO EVENTO [{dadosuser[4]}]")
@@ -198,17 +277,25 @@ Participantes:''')
                 else:
 
                     result = buscardados("eventos")
-
+                    ids = ""
                     for i, coluna in enumerate(result):
                         print(f"[{coluna[0]}] {coluna[1]}\n")
-                    registrar = int(input("Deseja se registrar em qual evento: "))
+                        ids += f"{coluna[0]}"
+                    while True:
+                        registrar = str(input("Deseja se registrar em qual evento: "))
+                        if registrar not in ids:
+                            linha2(31)
+                            cabeçalho("\033[31mID INVÁLIDO\033[m")
+                            linha2(31)
+                        else:
+                            break
 
                     #===========================================================================================================
 
                     result = buscardados("eventos")
                     eventoreg = str("").lower()
                     for i, v in enumerate(result):
-                        if v[0] == registrar:
+                        if v[0] == int(registrar):
                             eventoreg = v[5]
                             maxevento = v[3]
                             dataev = v[2]

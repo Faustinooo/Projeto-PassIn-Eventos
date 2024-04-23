@@ -87,3 +87,12 @@ def buscardados(tabela = ""):
 
 
 # FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES FUNCOES
+
+
+def vefdata(data):
+    value = str(f"{data[4:]}-{data[3:4]}-{data[0:2]}")
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
