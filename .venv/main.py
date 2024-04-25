@@ -78,6 +78,7 @@ while True:
                         break
 
                 date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
+                date = f"{data[4:]}-{data[3:4]}-{data[0:2]}"
                 dato = f"{data[0:2]}/{data[3:4]}/{data[4:]}"
                 nume = str(f"{nome}").replace(" ", "")
                 name = f"{nome} - {dato} - 0/{maximo}"
@@ -155,7 +156,7 @@ Participantes:''')
 
                 while True:
                     apagar = str(input("Deseja Apagar qual evento: "))
-                    if inspecionar not in ids:
+                    if apagar not in ids:
                         linha2(31)
                         cabeçalho("\033[31mID INVÁLIDO\033[m")
                         linha2(31)
@@ -167,7 +168,7 @@ Participantes:''')
                 numero = 0
                 for i, v in enumerate(result):
                     numero = v[0]
-                    if numero == str(apagar):
+                    if numero == int(apagar):
                         aptabela = v[5]
 
                 #--------------------------------------------------------------------------------------------------
